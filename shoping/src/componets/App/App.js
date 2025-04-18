@@ -12,18 +12,18 @@ class App extends Component{
     return(
       <div className='App'>
         <div className='container'>
-          {/* <div className='row'> */}
-            {/* <NumberOne tieude ="San pham so 1" linkanh="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOEsRObwf7SjkJ60fp4yOP9QM183j4dlTjnQ&s"></NumberOne>
+          <div className='row'> 
+           <NumberOne tieude ="San pham so 1" linkanh="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOEsRObwf7SjkJ60fp4yOP9QM183j4dlTjnQ&s"></NumberOne>
             <NumberOne tieude ="San pham so 2" linkanh="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOEsRObwf7SjkJ60fp4yOP9QM183j4dlTjnQ&s"></NumberOne>
             <NumberOne tieude ="San pham so 3" linkanh="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOEsRObwf7SjkJ60fp4yOP9QM183j4dlTjnQ&s"></NumberOne>
             <NumberOne tieude ="San pham so 4" linkanh="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOEsRObwf7SjkJ60fp4yOP9QM183j4dlTjnQ&s"></NumberOne>
-            <NumberOne tieude ="San pham so 5" linkanh="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOEsRObwf7SjkJ60fp4yOP9QM183j4dlTjnQ&s"></NumberOne> */}
+            <NumberOne tieude ="San pham so 5" linkanh="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOEsRObwf7SjkJ60fp4yOP9QM183j4dlTjnQ&s"></NumberOne> 
             <Header/>
             <Content/>
             <Footer/>
           </div>
         </div>
-      // </div>
+       </div>
     )
   }
 }
