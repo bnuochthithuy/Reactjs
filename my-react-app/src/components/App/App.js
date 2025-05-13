@@ -1,183 +1,62 @@
-import React, { Component } from 'react';
-import { getData } from '../../Form/Room.js';
-import './App.css';
+import React from "react";
+import {BrowserRouter as Router, Route, Routes, NavLink } from "react-router-dom";
+import Home from "../Home";
+import About from "../About";
+import Contact from "../Contact";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      id: '',
-      name: '',
-      myfile: '',
-      type_room: '',
-      area: '',
-      price: '',
-      oldprice: '',
-      list: [],
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSave = this.handleSave.bind(this);
-    this.handleOrder = this.handleOrder.bind(this);
-  }
-
-  componentDidMount() {
-    const rom = getData();
-    localStorage.setItem('rooms', JSON.stringify(rom));
-
-    if (localStorage.getItem('rooms')) {
-      this.setState({ list: JSON.parse(localStorage.getItem('rooms')) });
-    }
-  }
-
-  handleChange(event) {
-    const { name, value, files } = event.target;
-    this.setState({
-      [name]: name === 'myfile' ? files[0]?.name : value,
-    });
-  }
-
-  handleSave(event) {
-    event.preventDefault();
-    const newList = [...this.state.list, { ...this.state }];
-    localStorage.setItem('rooms', JSON.stringify(newList));
-    this.setState({
-      id: '',
-      name: '',
-      myfile: '',
-      type_room: '',
-      area: '',
-      price: '',
-      oldprice: '',
-      list: newList,
-    });
-  }
-
-  handleOrder(event) {
-    event.preventDefault();
-    alert('Thanks for your order!');
-  }
-
-  render() {
-    const { name, myfile, type_room, area, price, oldprice, list } = this.state;
-
-    return (
-      <div className="container">
-        <h2>Add Room</h2>
-        <form onSubmit={this.handleSave}>
-          <label>Enter your name:</label>
-          <input
-            className="form-control"
-            type="text"
-            name="name"
-            value={name}
-            onChange={this.handleChange}
-          />
-
-          <label>Enter Image:</label>
-          <input
-            className="form-control"
-            type="file"
-            name="myfile"
-            onChange={this.handleChange}
-          />
-
-          <label>Enter Type Room:</label>
-          <input
-            className="form-control"
-            type="text"
-            name="type_room"
-            value={type_room}
-            onChange={this.handleChange}
-          />
-
-          <label>Enter Area:</label>
-          <input
-            className="form-control"
-            type="text"
-            name="area"
-            value={area}
-            onChange={this.handleChange}
-          />
-
-          <label>Enter Price:</label>
-          <input
-            className="form-control"
-            type="text"
-            name="price"
-            value={price}
-            onChange={this.handleChange}
-          />
-
-          <label>Enter Old Price:</label>
-          <input
-            className="form-control"
-            type="text"
-            name="oldprice"
-            value={oldprice}
-            onChange={this.handleChange}
-          />
-
-          <br />
-          <button type="submit" className="btn btn-primary m-2">
-            Save Room
-          </button>
-          <button type="button" className="btn btn-success m-2" onClick={this.handleOrder}>
-            Đặt Phòng
-          </button>
-        </form>
-
-        <br />
+const App = () => {
+  return (
+    <Router>
+      <div className="container mt-3">
         <nav>
-          <ul className="nav">
+          <ul className="nav nav-tabs">
             <li className="nav-item">
-              <a className="nav-link active" href="#">TRANG CHỦ</a>
+              <NavLink
+                to="/"
+                end
+                className={({ isActive }) =>
+                  `nav-link ${isActive ? "text-white bg-primary" : ""}`
+                }
+                style={{ cursor: "pointer" }}
+              >
+                Home
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link disabled" href="#">PHÒNG VÀ MỨC GIÁ</a>
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  `nav-link ${isActive ? "text-white bg-success" : ""}`
+                }
+                style={{ cursor: "pointer" }} 
+              >
+                About
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">ĐẶT PHÒNG</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">HÌNH ẢNH</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">GIỚI THIỆU</a>
+              <NavLink
+                to="/contact"
+                className={({ isActive }) =>
+                  `nav-link ${isActive ? "text-white bg-danger" : ""}`
+                }
+                style={{ cursor: "pointer" }}
+              >
+                Contact
+              </NavLink>
             </li>
           </ul>
         </nav>
 
-        <table className="table table-striped table-dark mt-4">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Type Room</th>
-              <th>Image</th>
-              <th>Area</th>
-              <th>Price</th>
-              <th>Old Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {list.map((item, index) => (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td>{item.name}</td>
-                <td>{item.type_room}</td>
-                <td>
-                  <img src={"images/" + item.myfile} alt="Room" style={{ width: '50px', height: '50px' }} />
-                </td>
-                <td>{item.area}</td>
-                <td>{item.price}</td>
-                <td>{item.oldprice}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div className="mt-4">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </div>
       </div>
-    );
-  }
-}
+    </Router>
+  );
+};
 
 export default App;

@@ -1,6 +1,5 @@
 import React from 'react';
 
-// Hàm getData để trả về dữ liệu các phòng
 export function getData() {
   return [
     {
@@ -25,11 +24,10 @@ export function getData() {
       capacity: 4,
       area: 35
     }
-    // thêm phòng nếu cần
   ];
 }
 
-function Room({ room }) {
+export default function Room({ room }) {
   return (
     <div className="card" style={{ width: '18rem' }}>
       <img src={room.image} className="card-img-top" alt={room.name} />
@@ -45,5 +43,3 @@ function Room({ room }) {
     </div>
   );
 }
-
-export default Room;

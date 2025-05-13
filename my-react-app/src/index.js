@@ -4,6 +4,7 @@ import './index.css';
 import App from './components/App/App';
 import * as ServiceWorker from './ServiceWorker';
 import reportWebVitals from './reportWebVitals';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,7 +14,8 @@ root.render(
 );
 ReactDOM.render(
   <React.StrictMode>
-     <App ></App>
+     <App ></App>import Add from './components/Add/Add'; // Corrected path
+
   </React.StrictMode>,
   document.getElementById('root')
 )
